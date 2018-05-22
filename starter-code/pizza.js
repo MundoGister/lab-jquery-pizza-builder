@@ -77,20 +77,14 @@ $('document').ready(function () {
         $(topping).toggle();
     }
 
-    function getPriceByItem(topping) {
-        var toppingPrice = parseInt($(topping).text()[1]);
-
-        return toppingPrice;
-    }
-
     function getTotalPrice() {
         var $listPrice = $('.panel.price ul')[0].children;
         var currentPrice = 0;
 
-        for (var i = 0; i < $list.length; i++) {
+        for (var i = 0; i < $listPrice.length; i++) {
             var listElement = $listPrice[i];
             if ($(listElement).is(":visible")) {
-                currentPrice += getPriceByItem(listElement);
+                currentPrice += Number($(listElement).text()[1]);
             }
         }
 
