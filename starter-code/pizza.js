@@ -18,61 +18,57 @@ $('document').ready(function () {
     var $totalPrice = $('.panel > strong');
     var $dollar = $totalPrice.text()[0];
 
-    getTotalPrice($listPep); /* This is to reset default price*/
+    getTotalPrice();
 
     //Button events
     $('.btn-pepperonni').click(function () {
         toggleTopping($pepperonni);
         toggleActive(this);
-        ingredientsListing($listPep);
-        getTotalPrice($listPep);
+        toppingListing($listPep);
+        getTotalPrice();
     });
 
     $('.btn-mushrooms').click(function () {
         toggleTopping($mushrooms);
         toggleActive(this);
-        ingredientsListing($listMushroom);
-        getTotalPrice($mushrooms);
+        toppingListing($listMushroom);
+        getTotalPrice();
     });
 
     $('.btn-green-peppers').click(function () {
         toggleTopping($greenPepper);
         toggleActive(this);
-        ingredientsListing($listGreen);
-        getTotalPrice($listGreen);
+        toppingListing($listGreen);
+        getTotalPrice();
     });
 
     $('.btn-sauce').click(function () {
         debugger
-        toggleTopping($sauceWhite)
+        toggleTopping($sauceWhite);
         toggleActive(this);
-        ingredientsListing($listWhiteSauce);
-        getTotalPrice($listWhiteSauce);
+        toppingListing($listWhiteSauce);
+        getTotalPrice();
     });
 
     $('.btn-crust').click(function () {
         debugger;  
-        toggleTopping($glutenFree)
+        toggleTopping($glutenFree);
         toggleActive(this);
-        ingredientsListing($listGluten);
-        getTotalPrice($listGluten);
+        toppingListing($listGluten);
+        getTotalPrice();
     });
 
-    // Functions
-    function toggleTopping(ingredient) {
-        // ingredient.hasClass('crust') ? ingredient.toggleClass('crust-gluten-free')
-        //     : ingredient.hasClass('sauce') ? ingredient.toggleClass('sauce-white')
-        //         : $(ingredient).toggle();
-
-        if (ingredient.hasClass('crust')) {
-            ingredient.toggleClass('crust-gluten-free');
+    
+    function toggleTopping(topping) {
+        if (topping.hasClass('crust')) {
+            topping.toggleClass('crust-gluten-free');
         }
         else {
-            if (ingredient.hasClass('sauce')) {
-                ingredient.toggleClass('sauce-white');
+            if (topping.hasClass('sauce')) {
+                topping.toggleClass('sauce-white');
             }
             else {
-                $(ingredient).toggle();
+                $(topping).toggle();
             }
         }
     }
@@ -81,32 +77,29 @@ $('document').ready(function () {
         $(btn).toggleClass('active');
     }
 
-    function ingredientsListing(ingredient) {
-        $(ingredient).toggle();
+    function toppingListing(topping) {
+        $(topping).toggle();
     }
 
-    function getPriceByItem(ingredient) {
-        var ingredientPrice = parseInt($(ingredient).text()[1]);
+    function getPriceByItem(topping) {
+        var toppingPrice = parseInt($(topping).text()[1]);
 
-        return ingredientPrice;
+        return toppingPrice;
     }
 
-    function getTotalPrice(ingredient) {
-
-        var $list = $('.panel.price ul')[0].children;
-
+    function getTotalPrice() {
+        var $listPrice = $('.panel.price ul')[0].children;
         var currentPrice = 0;
 
         for (var i = 0; i < $list.length; i++) {
-            var listElement = $list[i];
-
+            var listElement = $listPrice[i];
             if ($(listElement).is(":visible")) {
                 currentPrice += getPriceByItem(listElement);
             }
         }
 
         currentPrice += 10;
-        return $totalPrice.text($dollar + currentPrice)
+        return $totalPrice.text($dollar + currentPrice);
     }
 
 });
