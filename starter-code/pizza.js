@@ -8,13 +8,11 @@ $('document').ready(function () {
     var $greenPepper = $('.green-pepper');
     var $sauceWhite = $('.sauce-white');
     var $glutenFree = $('.crust-gluten-free');
-    //List vars: 
     var $listPep = $('aside li:first');
     var $listMushroom = $('aside li:nth-child(2)');
     var $listGreen = $('aside li:nth-child(3)');
     var $listWhiteSauce = $('aside li:nth-child(4)');
     var $listGluten = $('aside li:last');
-
     var $totalPrice = $('.panel > strong');
     var $dollar = $totalPrice.text()[0];
 
@@ -43,15 +41,13 @@ $('document').ready(function () {
     });
 
     $('.btn-sauce').click(function () {
-        debugger
         toggleTopping($sauceWhite);
         toggleActive(this);
         toppingListing($listWhiteSauce);
         getTotalPrice();
     });
 
-    $('.btn-crust').click(function () {
-        debugger;  
+    $('.btn-crust').click(function () {  
         toggleTopping($glutenFree);
         toggleActive(this);
         toppingListing($listGluten);
